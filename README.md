@@ -93,6 +93,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This tool is designed to optimize resumes while maintaining truthfulness. It will not generate false information or credentials.
