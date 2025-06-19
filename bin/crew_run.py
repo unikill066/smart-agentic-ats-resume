@@ -10,31 +10,18 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Add project root to Python path
 project_root = str(Path(__file__).resolve().parent.parent)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Suppress warnings and load environment variables
 warnings.filterwarnings('ignore')
 load_dotenv()
 
 from utils import get_openai_api_key, get_serper_api_key
 
-# Import API key retrievers
-# to_load = (get_openai_api_key, get_serper_api_key) if False else None  # placeholder for import resolution
-# from utils.download import get_openai_api_key, get_serper_api_key
-
-# Set API keys and default model
-gin = get_openai_api_key()
-os.environ["OPENAI_API_KEY"] = gin
-os.environ["SERPER_API_KEY"] = get_serper_api_key()
-os.environ["OPENAI_MODEL_NAME"] = 'gpt-4-turbo'
-
-# Import the job application Crew
+os.environ["OPENAI_MODEL_NAME"] = 'gpt-3.5-turbo'
 from utils.crew import job_application_crew
 
-# Predefined inputs for the job application workflow
 job_application_inputs = {
     'job_posting_url': (
         'https://jobs.lever.co/AIFund/6c82e23e-d954-4dd8-a734-c0c2c5ee00f1'
@@ -52,10 +39,8 @@ Ideal for leadership roles that require a strategic and innovative approach.
     )
 }
 
-# Execute the crew workflow (may take a few minutes)
 result = job_application_crew.kickoff(inputs=job_application_inputs)
 
-# Output the results
 print("Workflow executed. Result keys:")
 for key in result:
     print(f" - {key}")
